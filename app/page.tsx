@@ -7,12 +7,12 @@ import { Separator } from "@/components/ui/separator"
 import { GuestsCarousel } from "@/components/guests-carousel"
 import { SectionHeading } from "@/components/section-heading"
 import { ExperiencesGrid } from "@/components/experiences-grid"
-import { TestimonialsCarousel } from "@/components/testimonials-carousel"
 import { ContactSection } from "@/components/contact-section"
 import { SiteHeader } from "@/components/site-header"
 import { useEffect, useRef } from "react"
 import { useGsapOnScroll } from "@/hooks/use-gsap"
 import gsap from "gsap"
+import TestimonialsCarousel from "@/components/testimonials-carousel"
 
 export default function Page() {
   const heroRef = useRef<HTMLDivElement | null>(null)
@@ -101,9 +101,9 @@ export default function Page() {
         {/* Testimonials */}
         <section className="relative bg-[#0b0e0d] py-14 md:py-24">
           <div className="container px-4 md:px-8">
-            <SectionHeading title="What Partners Say" className="gsap-fade-up" />
+            
             <div className="mt-8">
-              <TestimonialsCarousel controls="bottom" />
+              <TestimonialsCarousel />
             </div>
           </div>
         </section>
