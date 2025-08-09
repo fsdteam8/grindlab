@@ -14,6 +14,3 @@ SMTP setup
 Set these env vars on Vercel or your environment to send real mail:
 - SMTP_HOST, SMTP_PORT, SMTP_SECURE (“true” or “false”), SMTP_USER, SMTP_PASS
 - CONTACT_TO, CONTACT_FROM
-
-Notes
-- Built from screenshots; implied interactions implemented per v0 Screenshot Prototypes guidance [^1].
