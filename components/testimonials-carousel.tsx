@@ -1,5 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 type Testimonial = {
   quote: string;
@@ -11,32 +13,32 @@ const testimonials: Testimonial[] = [
   {
     quote:
       "I've been ordering from TABLEFRESH for over year now, and the quality of their organic produce is consistently excellent. The convenience of having fresh, organic food delivered to my door has made healthy eating so much easier for my family.",
+    name: "John Doe",
+    location: "Portland",
+  },
+  {
+    quote:
+      "The freshness and quality exceeded my expectations. Every delivery arrives perfectly packaged and the customer service team is incredibly responsive to any questions or concerns.",
     name: "Sarah Johnson",
     location: "Portland, OR",
   },
   {
     quote:
-      "I've been ordering from TABLEFRESH for over year now, and the quality of their organic produce is consistently excellent. The convenience of having fresh, organic food delivered to my door has made healthy eating so much easier for my family.",
-    name: "Sarah Johnson",
-    location: "Portland, OR",
+      "What impressed me most is the variety of seasonal produce available. TABLEFRESH has introduced my family to vegetables we'd never tried before, expanding our culinary horizons.",
+    name: "Michael Chen",
+    location: "Seattle, WA",
   },
   {
     quote:
-      "I've been ordering from TABLEFRESH for over year now, and the quality of their organic produce is consistently excellent. The convenience of having fresh, organic food delivered to my door has made healthy eating so much easier for my family.",
-    name: "Sarah Johnson",
-    location: "Portland, OR",
+      "The subscription model works perfectly for our busy lifestyle. We never run out of fresh vegetables, and the automatic deliveries save us so much time on grocery shopping.",
+    name: "Emily Rodriguez",
+    location: "San Francisco, CA",
   },
   {
     quote:
-      "I've been ordering from TABLEFRESH for over year now, and the quality of their organic produce is consistently excellent. The convenience of having fresh, organic food delivered to my door has made healthy eating so much easier for my family.",
-    name: "Sarah Johnson",
-    location: "Portland, OR",
-  },
-  {
-    quote:
-      "I've been ordering from TABLEFRESH for over year now, and the quality of their organic produce is consistently excellent. The convenience of having fresh, organic food delivered to my door has made healthy eating so much easier for my family.",
-    name: "Sarah Johnson",
-    location: "Portland, OR",
+      "As someone who values sustainable farming, I appreciate TABLEFRESH's commitment to organic practices. The quality speaks for itself, and I feel good about supporting ethical agriculture.",
+    name: "David Thompson",
+    location: "Denver, CO",
   },
 ];
 
@@ -44,6 +46,7 @@ export default function TestimonialsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
   const [isPlaying, setIsPlaying] = useState(true);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Calculate items per view based on screen size
   useEffect(() => {
@@ -64,14 +67,26 @@ export default function TestimonialsCarousel() {
     return () => window.removeEventListener("resize", updateItemsPerView);
   }, []);
 
+  // Reset current index when items per view changes
+  useEffect(() => {
+    const maxIndex = Math.max(0, testimonials.length - itemsPerView);
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex);
+    }
+  }, [itemsPerView, currentIndex]);
+
   const maxIndex = Math.max(0, testimonials.length - itemsPerView);
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   }, [maxIndex]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  }, [maxIndex]);
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(Math.max(0, Math.min(index, maxIndex)));
   };
 
   // Auto-play functionality
@@ -82,9 +97,43 @@ export default function TestimonialsCarousel() {
     return () => clearInterval(interval);
   }, [isPlaying, nextSlide]);
 
-  // Pause on hover
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        document.activeElement &&
+        carouselRef.current?.contains(document.activeElement)
+      ) {
+        switch (e.key) {
+          case "ArrowLeft":
+            e.preventDefault();
+            prevSlide();
+            break;
+          case "ArrowRight":
+            e.preventDefault();
+            nextSlide();
+            break;
+          case "Home":
+            e.preventDefault();
+            goToSlide(0);
+            break;
+          case "End":
+            e.preventDefault();
+            goToSlide(maxIndex);
+            break;
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [nextSlide, prevSlide, maxIndex]);
+
+  // Pause on hover or focus
   const handleMouseEnter = () => setIsPlaying(false);
   const handleMouseLeave = () => setIsPlaying(true);
+  const handleFocus = () => setIsPlaying(false);
+  const handleBlur = () => setIsPlaying(true);
 
   // Touch/swipe support
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -115,9 +164,12 @@ export default function TestimonialsCarousel() {
     }
   };
 
+  // Generate dots for pagination
+  const totalDots = maxIndex + 1;
+
   return (
     <div className="w-full">
-      <div className=" mx-auto">
+      <div className="mx-auto">
         {/* Header with navigation */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl md:text-[48px] font-bold font-primary leading-[120%] tracking-[0%] text-[#D9D9D9] mb-6">
@@ -128,15 +180,21 @@ export default function TestimonialsCarousel() {
           <div className="flex gap-3">
             <button
               onClick={prevSlide}
-              className="w-10 h-10 bg-transparent border border-green-500/50 hover:border-green-500 rounded-full flex items-center justify-center transition-colors duration-200"
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              disabled={currentIndex === 0}
+              className="w-10 h-10 bg-transparent border border-green-500/50 hover:border-green-500 disabled:border-gray-600/30 disabled:opacity-50 rounded-full flex items-center justify-center transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft className="w-4 h-4 text-green-500" />
+              <ChevronLeft className="w-4 h-4 text-green-500 disabled:text-gray-600" />
             </button>
 
             <button
               onClick={nextSlide}
-              className="w-10 h-10 bg-transparent border border-green-500/50 hover:border-green-500 rounded-full flex items-center justify-center transition-colors duration-200"
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              disabled={currentIndex === maxIndex}
+              className="w-10 h-10 bg-transparent border border-green-500/50 hover:border-green-500 disabled:border-gray-600/30 disabled:opacity-50 rounded-full flex items-center justify-center transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-4 h-4 text-green-500" />
@@ -146,12 +204,17 @@ export default function TestimonialsCarousel() {
 
         {/* Carousel container */}
         <div
-          className="relative"
+          ref={carouselRef}
+          className="relative focus:outline-none"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
+          tabIndex={0}
+          role="region"
+          aria-label="Testimonials carousel"
+          aria-live="polite"
         >
           <div className="overflow-hidden">
             <div
@@ -160,14 +223,13 @@ export default function TestimonialsCarousel() {
                 transform: `translateX(-${
                   currentIndex * (100 / itemsPerView)
                 }%)`,
-                width: `${(testimonials.length * 100) / itemsPerView}%`,
               }}
             >
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
                   className="flex-shrink-0 px-3 lg:px-4"
-                  style={{ width: `${100 / testimonials.length}%` }}
+                  style={{ width: `${100 / itemsPerView}%` }}
                 >
                   <div className="bg-zinc-900/80 backdrop-blur-sm rounded-2xl p-6 lg:p-6 h-full min-h-[300px] flex flex-col">
                     {/* Stars */}
@@ -191,11 +253,14 @@ export default function TestimonialsCarousel() {
                     {/* Author */}
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-medium text-sm">
-                          {testimonial.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
+                        <span className="text-white font-medium text-lg">
+                          <Image
+                            src="/images/avatar-placeholder.jpg"
+                            alt="Avatar"
+                            width={48}
+                            height={48}
+                            className="rounded-full"
+                          />
                         </span>
                       </div>
                       <div className="min-w-0 flex-1">
@@ -212,6 +277,33 @@ export default function TestimonialsCarousel() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Pagination dots */}
+        {totalDots > 1 && (
+          <div className="flex justify-center gap-2 mt-6">
+            {Array.from({ length: totalDots }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                className={`w-2 h-2 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 ${
+                  index === currentIndex
+                    ? "bg-green-500 w-4"
+                    : "bg-gray-600 hover:bg-gray-500"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Screen reader announcement */}
+        <div className="sr-only" aria-live="polite" aria-atomic="true">
+          Showing testimonial {currentIndex + 1} to{" "}
+          {Math.min(currentIndex + itemsPerView, testimonials.length)} of{" "}
+          {testimonials.length}
         </div>
       </div>
     </div>

@@ -1,19 +1,31 @@
-'use client'
+"use client";
 
-import Image from "next/image"
-import { cn } from "@/lib/utils"
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 type Props = {
-  src: string
-  alt: string
-  label?: string
-  className?: string
-  rounded?: string
-}
+  src: string;
+  alt: string;
+  label?: string;
+  className?: string;
+  rounded?: string;
+};
 
-export function ImageCard({ src, alt, label, className, rounded = "rounded-2xl" }: Props) {
+export function ImageCard({
+  src,
+  alt,
+  label,
+  className,
+  rounded = "rounded-2xl",
+}: Props) {
   return (
-    <div className={cn("relative w-full h-full overflow-hidden group", rounded, className)}>
+    <div
+      className={cn(
+        "relative w-full h-full overflow-hidden group",
+        rounded,
+        className
+      )}
+    >
       <Image
         src={src || "/placeholder.svg"}
         alt={alt}
@@ -25,11 +37,11 @@ export function ImageCard({ src, alt, label, className, rounded = "rounded-2xl" 
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/20 pointer-events-none " />
       {label && (
         <div className="absolute inset-0 flex items-center justify-center group-hover:bg-black/30 transition-colors duration-300">
-         <span className="text-lg md:text-xl font-medium text-white/95 mix-blend-luminosity text-center px-4 group-hover:block hidden">
-          {label}
-        </span>
+          <span className="text-lg md:text-xl font-medium text-white/95 mix-blend-luminosity text-center px-4 group-hover:block hidden">
+            {label}
+          </span>
         </div>
       )}
     </div>
-  )
+  );
 }

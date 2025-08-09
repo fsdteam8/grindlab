@@ -77,12 +77,15 @@ export default function Page() {
                 world&apos;s top hotels and high‑performing clientele.
               </p>
               <div className="hero-cta mt-8 flex gap-3">
-                <Button
-                  size="lg"
-                  className="bg-brand text-black hover:opacity-90 font-bold"
-                >
-                  Explore Services
-                </Button>
+                <Link href={"#services"}>
+                  {" "}
+                  <Button
+                    size="lg"
+                    className="bg-brand text-black hover:opacity-90 font-bold"
+                  >
+                    Explore Services
+                  </Button>
+                </Link>
                 <Button
                   size="lg"
                   variant="outline"
@@ -110,7 +113,7 @@ export default function Page() {
         </section>
 
         {/* Tailored Wellness Experiences */}
-        <section className="relative bg-black py-14 md:py-24">
+        <section className="relative bg-black py-14 md:py-24" id="services">
           <div className="container px-4 md:px-8">
             <SectionHeading
               title="Tailored Wellness Experiences"

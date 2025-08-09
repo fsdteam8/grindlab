@@ -21,7 +21,7 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors container  ${
         scrolled
-          ? "bg-black/60 backdrop-blur-xl supports-[backdrop-filter]:bg-black/10 my-4 rounded-full"
+          ? "bg-black/20 backdrop-blur-xl supports-[backdrop-filter]:bg-black/30 !my-4 rounded-full duration-300"
           : "bg-transparent"
       }`}
     >
@@ -53,7 +53,7 @@ export function SiteHeader() {
         </nav>
         <div className="hidden md:block">
           <NavLink href="#contact" onClick={() => setOpen(false)}>
-            <Button className="mt-2 w-full bg-brand text-black hover:opacity-90 cursor-pointer font-bold">
+            <Button className="w-full bg-brand text-black hover:opacity-90 cursor-pointer font-bold rounded-full">
               Contact
             </Button>
           </NavLink>
