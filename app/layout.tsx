@@ -1,30 +1,31 @@
 import type { Metadata } from "next";
-import {  Montserrat, Playfair_Display } from "next/font/google";
+import { Montserrat, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 
-const montSerrat = Montserrat({
-  variable: "--font-montserrat",
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: "400",
+  variable: "--font-montserrat",
 });
+
 const playfairDisplay = Playfair_Display({
   variable: "--font-playfair-display",
-  subsets: ["latin"], 
+  subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-
-
 export const metadata: Metadata = {
   title: "GRIND LAB",
-  description: "Elite movement, mindset, and performance solutions for the world's top hotels and high‑performing clientele",
+  description:
+    "Elite movement, mindset, and performance solutions for the world's top hotels and high‑performing clientele",
   icons: {
     icon: "/images/grindlab.svg",
   },
   openGraph: {
     title: "GRIND LAB",
-    description: "Elite movement, mindset, and performance solutions for the world's top hotels and high‑performing clientele.",
+    description:
+      "Elite movement, mindset, and performance solutions for the world's top hotels and high‑performing clientele.",
     url: "https://grindlabglobal.com",
     siteName: "GRIND LAB",
     images: [
@@ -47,10 +48,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montSerrat.variable} ${playfairDisplay.variable} antialiased`}
+        className={`${montserrat.variable} ${playfairDisplay.variable} antialiased`}
       >
         {children}
-          <Toaster position="top-right" />
+        <Toaster position="top-right" />
       </body>
     </html>
   );

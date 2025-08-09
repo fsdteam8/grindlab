@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -39,7 +39,9 @@
   --sidebar-ring: oklch(0.708 0 0);
   --brand: limegreen;
   --brand-contrast: #0b0e0d;
-  --ring-soft: 0 0 0 3px rgba(20,184,122,0.25);
+  --ring-soft: 0 0 0 3px rgba(20, 184, 122, 0.25);
+  --font-primary: var(--font-playfair-display), times, serif;
+  --font-secondary: var(--font-montserrat), sans-serif;
 }
 
 .dark {
@@ -114,6 +116,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --font-primary: var(--font-playfair-display), times, serif;
+  --font-secondary: var(--font-montserrat), sans-serif;
 }
 
 @layer base {
@@ -125,18 +129,45 @@
   }
 }
 
-.bg-brand { background-color: var(--brand); }
-.text-brand { color: var(--brand); }
-.ring-soft-brand { box-shadow: var(--ring-soft); }
+.bg-brand {
+  background-color: var(--brand);
+}
+.text-brand {
+  color: var(--brand);
+}
+.ring-soft-brand {
+  box-shadow: var(--ring-soft);
+}
 
 .grid-dots {
-  background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.08) 1px,
+    transparent 1px
+  );
   background-size: 16px 16px;
 }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
-
-.container{
+.container {
   max-width: 1533px;
   margin: 0 auto;
+}
+
+.nav-link {
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  @apply font-secondary hover:text-[limegreen] transition-colors;
+}
+
+.hero-sub {
+  font-weight: 500;
+  font-style: Medium;
+  line-height: 150%;
+  letter-spacing: 0%;
 }

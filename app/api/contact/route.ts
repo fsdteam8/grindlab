@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     transport = nodemailer.createTransport({ jsonTransport: true })
   }
 
-  const to = CONTACT_TO || "demo@example.com"
+  const to = CONTACT_TO || "fsdteam.saa@gmail.com"
   const from = CONTACT_FROM || "no-reply@example.com"
 
   const info = await transport.sendMail({

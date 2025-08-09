@@ -1,22 +1,23 @@
-'use client'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 
-import useEmblaCarousel, { type EmblaOptionsType } from "embla-carousel-react"
-import Autoplay from "embla-carousel-autoplay"
-import { useCallback, useEffect, useRef, useState } from "react"
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type AutoCarouselProps<T> = {
-  items: T[]
-  renderItem: (item: T, index: number) => React.ReactNode
-  slideClassName?: string
-  options?: EmblaOptionsType
-  autoplayDelay?: number
-  className?: string
-  withDots?: boolean
-  controls?: "sides" | "bottom"
-}
+  items: T[];
+  renderItem: (item: T, index: number) => React.ReactNode;
+  slideClassName?: string;
+  options?: any;
+  autoplayDelay?: number;
+  className?: string;
+  withDots?: boolean;
+  controls?: "sides" | "bottom";
+};
 
 export function AutoCarousel<T>({
   items,
@@ -29,35 +30,39 @@ export function AutoCarousel<T>({
   controls = "sides",
 }: AutoCarouselProps<T>) {
   const autoplay = useRef(
-    Autoplay({ delay: autoplayDelay, stopOnInteraction: false, stopOnMouseEnter: true })
-  )
+    Autoplay({
+      delay: autoplayDelay,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+    })
+  );
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "start", ...options },
     [autoplay.current]
-  )
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+  );
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
   const onSelect = useCallback(() => {
-    if (!emblaApi) return
-    setSelectedIndex(emblaApi.selectedScrollSnap())
-  }, [emblaApi])
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
   const scrollTo = useCallback(
     (index: number) => emblaApi?.scrollTo(index),
     [emblaApi]
-  )
+  );
 
   useEffect(() => {
-    if (!emblaApi) return
-    onSelect()
-    setScrollSnaps(emblaApi.scrollSnapList())
-    emblaApi.on("select", onSelect)
+    if (!emblaApi) return;
+    onSelect();
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on("select", onSelect);
     emblaApi.on("reInit", () => {
-      setScrollSnaps(emblaApi.scrollSnapList())
-      onSelect()
-    })
-  }, [emblaApi, onSelect])
+      setScrollSnaps(emblaApi.scrollSnapList());
+      onSelect();
+    });
+  }, [emblaApi, onSelect]);
 
   return (
     <div className={cn("relative", className)}>
@@ -111,7 +116,9 @@ export function AutoCarousel<T>({
                   onClick={() => scrollTo(i)}
                   className={cn(
                     "size-2.5 rounded-full border border-white/20",
-                    i === selectedIndex ? "bg-brand shadow-[0_0_0_3px_rgba(20,184,122,0.25)]" : "bg-white/20 hover:bg-white/30"
+                    i === selectedIndex
+                      ? "bg-brand shadow-[0_0_0_3px_rgba(20,184,122,0.25)]"
+                      : "bg-white/20 hover:bg-white/30"
                   )}
                 />
               ))}
@@ -127,5 +134,5 @@ export function AutoCarousel<T>({
         </div>
       )}
     </div>
-  )
+  );
 }
