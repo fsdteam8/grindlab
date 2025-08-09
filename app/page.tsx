@@ -138,7 +138,7 @@ export default function Page() {
         </section>
 
         {/* Footer */}
-        <footer className="relative mt-0 border-t border-white/5">
+        <footer className="relative mt-0">
           <div className="absolute inset-0 -z-10">
             <Image
               src="/images/dark-waves.png"
@@ -150,8 +150,8 @@ export default function Page() {
           </div>
 
           <div className="container px-4 md:px-8 py-10 md:py-14">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10 text-sm">
-              <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 text-sm">
+              <div className="space-y-4 w-[408px] col-span-2">
                 <div className="flex items-center gap-2">
                   <Image
                     src="/images/grindlab.svg"
@@ -160,22 +160,30 @@ export default function Page() {
                     height={32}
                   />
                 </div>
-                <p className="text-white/70">
+                <p className="text-white font-medium text-base leading-[150%] tracking-normal">
                   Our suite of living experiences are all carefully curated.
                   From inspired minds and mentors, to kitchen and sport.
                 </p>
               </div>
 
               <div>
-                <h4 className="text-white/90 font-medium mb-3">Company</h4>
-                <ul className="space-y-2 text-white/70">
+                <h4 className="text-white font-semibold mb-6 md:text-2xl text-lg tracking-[0%] uppercase">
+                  Company
+                </h4>
+                <ul className="space-y-2 text-white ">
                   <li>
-                    <Link href="#" className="hover:text-white">
+                    <Link
+                      href="#"
+                      className=" hover:text-[limegreen] font-semibold text-base leading-[150%] tracking-normal uppercase"
+                    >
                       Event Management
                     </Link>
                   </li>
                   <li>
-                    <Link href="#" className="hover:text-white">
+                    <Link
+                      href="#"
+                      className=" hover:text-[limegreen] font-semibold text-base leading-[150%] tracking-normal uppercase"
+                    >
                       Corporate Concierge
                     </Link>
                   </li>
@@ -183,15 +191,23 @@ export default function Page() {
               </div>
 
               <div>
-                <h4 className="text-white/90 font-medium mb-3">Partners</h4>
+                <h4 className="text-white font-semibold mb-6 md:text-2xl text-lg tracking-[0%] uppercase">
+                  Partners
+                </h4>
                 <ul className="space-y-2 text-white/70">
                   <li>
-                    <Link href="#" className="hover:text-white">
+                    <Link
+                      href="#"
+                      className="hover:text-[limegreen] font-semibold text-base leading-[150%] tracking-normal uppercase"
+                    >
                       About Us
                     </Link>
                   </li>
                   <li>
-                    <Link href="#" className="hover:text-white">
+                    <Link
+                      href="#"
+                      className="hover:text-[limegreen] font-semibold text-base leading-[150%] tracking-normal uppercase"
+                    >
                       Terms & Conditions
                     </Link>
                   </li>
@@ -199,20 +215,31 @@ export default function Page() {
               </div>
 
               <div>
-                <h4 className="text-white/90 font-medium mb-3">Social Media</h4>
-                <ul className="space-y-2 text-white/70">
+                <h4 className="text-white font-semibold mb-6 md:text-2xl text-lg tracking-[0%] uppercase">
+                  Social Media
+                </h4>
+                <ul className="space-y-2 text-white">
                   <li>
-                    <Link href="#" className="hover:text-white">
+                    <Link
+                      href="#"
+                      className="hover:text-[limegreen] font-semibold text-base leading-[150%] tracking-normal uppercase"
+                    >
                       Instagram
                     </Link>
                   </li>
                   <li>
-                    <Link href="#" className="hover:text-white">
+                    <Link
+                      href="#"
+                      className="hover:text-[limegreen] font-semibold text-base leading-[150%] tracking-normal uppercase"
+                    >
                       LinkedIn
                     </Link>
                   </li>
                   <li>
-                    <Link href="#" className="hover:text-white">
+                    <Link
+                      href="#"
+                      className="hover:text-[limegreen] font-semibold text-base leading-[150%] tracking-normal uppercase"
+                    >
                       YouTube
                     </Link>
                   </li>
@@ -221,12 +248,14 @@ export default function Page() {
             </div>
             <Separator className="my-6 bg-white/10" />
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/60">
-              <p>© 2025 TALES FRESH. All rights reserved.</p>
+              <p className="uppercase">
+                © {new Date().getFullYear()} Grind Lab. All rights reserved.
+              </p>
               <div className="flex gap-4">
-                <Link href="#" className="hover:text-white">
+                <Link href="#" className="hover:text-white hover:underline">
                   Privacy
                 </Link>
-                <Link href="#" className="hover:text-white">
+                <Link href="#" className="hover:text-white hover:underline">
                   Cookies
                 </Link>
               </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Facebook, Linkedin } from "lucide-react";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -147,7 +148,7 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   placeholder="Name"
-                  className="w-full px-0 py-4 bg-transparent border-0 border-b border-white/30 text-white text-lg placeholder:text-white focus:outline-none focus:border-white/60 transition-all duration-300"
+                  className="w-full px-0 py-4 bg-transparent border-0 border-b border-white text-white text-lg placeholder:text-white focus:outline-none focus:border-white/60 transition-all duration-300"
                 />
                 {errors.name && (
                   <p className="mt-2 text-sm text-red-400">{errors.name}</p>
@@ -248,14 +249,18 @@ const ContactSection = () => {
             {/* Social Icons */}
             <div>
               <h5 className="text-white text-lg mb-4 font-light">Follow Us</h5>
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full border border-white/30 bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all duration-300 cursor-pointer">
-                  <span className="text-white text-sm font-medium">f</span>
+              <div className="flex gap-1">
+                <div className="w-10 h-10 rounded-full  flex items-center justify-center hover:bg-white/20 transition-all duration-300 cursor-pointer">
+                  <span className="text-white text-sm font-medium">
+                    <Facebook className="w-5 h-5" />
+                  </span>
                 </div>
-                <div className="w-10 h-10 rounded-full border border-white/30 bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all duration-300 cursor-pointer">
-                  <span className="text-white text-xs font-medium">in</span>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 cursor-pointer">
+                  <span className="text-white text-xs font-medium">
+                    <Linkedin className="w-5 h-5" />
+                  </span>
                 </div>
-                <div className="w-10 h-10 rounded-full border border-white/30 bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all duration-300 cursor-pointer">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 cursor-pointer">
                   <span className="text-white text-sm font-medium">𝕏</span>
                 </div>
               </div>
