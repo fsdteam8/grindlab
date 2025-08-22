@@ -3,7 +3,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { GuestsCarousel } from "@/components/guests-carousel";
 import { SectionHeading } from "@/components/section-heading";
@@ -62,21 +61,21 @@ export default function Page() {
               className="object-cover"
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-bl from-black/50 via-black/20 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-bl from-black/50 via-black/30 to-black/80" />
           </div>
           <div className="container px-4 md:px-8">
-            <div className="max-w-3xl pt-28 md:pt-36 pb-24 md:pb-36">
+            <div className="max-w-[836px] pt-28 md:pt-36 pb-24 md:pb-36">
               <h1
-                className="hero-title md:text-[72px]  text-4xl font-semibold tracking-[0%]  leading-[1.1] font-primary"
+                className="hero-title md:text-[72px] text-4xl font-semibold tracking-[0%]  leading-[1.1] font-primary"
                 style={{ textShadow: "0 4px 24px rgba(0,0,0,0.35)" }}
               >
                 "Luxury Wellness. Global Access."
               </h1>
-              <p className="hero-sub mt-5 text-base md:text-[32px] text-white/85 leading-relaxed ">
+              <p className="hero-sub mt-5 font-medium tracking-[0%] text-base md:text-[32px] text-white leading-[150%] ">
                 Elite movement, mindset, and performance solutions for the
                 world&apos;s top hotels and high‑performing clientele.
               </p>
-              <div className="hero-cta mt-8 flex gap-3">
+              {/* <div className="hero-cta mt-8 flex gap-3">
                 <Link href={"#services"}>
                   {" "}
                   <Button
@@ -93,7 +92,7 @@ export default function Page() {
                 >
                   About Us
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>

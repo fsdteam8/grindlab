@@ -21,11 +21,11 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors container  ${
         scrolled
-          ? "bg-black/20 backdrop-blur-xl supports-[backdrop-filter]:bg-black/30 !my-4 rounded-full duration-300"
+          ? "bg-black/20 backdrop-blur-xl supports-[backdrop-filter]:bg-black/30 !my-4 duration-300"
           : "bg-transparent"
       }`}
     >
-      <div className=" px-4 md:px-8 h-16 flex items-center justify-between">
+      <div className=" px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/images/grindlab.svg"
@@ -53,7 +53,7 @@ export function SiteHeader() {
         </nav>
         <div className="hidden md:block">
           <NavLink href="#contact" onClick={() => setOpen(false)}>
-            <Button className="w-full bg-brand text-black hover:opacity-90 cursor-pointer font-bold rounded-full">
+            <Button className="w-full bg-brand text-black hover:opacity-90 cursor-pointer font-bold ">
               Contact
             </Button>
           </NavLink>

@@ -205,7 +205,7 @@ const ContactSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-[limegreen] hover:bg-green-300 text-black font-semibold px-8 py-3 rounded-sm transition-all duration-300 disabled:opacity-70 inline-flex items-center gap-2"
+                  className="bg-[limegreen] cursor-pointer hover:bg-green-300 text-black font-semibold px-8 py-3 rounded-sm transition-all duration-300 disabled:opacity-70 inline-flex items-center gap-2"
                 >
                   {isSubmitting ? "SENDING..." : "SUBMIT"}
                   <svg

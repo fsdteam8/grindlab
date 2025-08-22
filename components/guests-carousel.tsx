@@ -10,19 +10,19 @@ type Item = {
 };
 
 const items: Item[] = [
+  { src: "/images/service-1.jpg", alt: "Guest relaxing in pool" },
+  { src: "/images/service-2.jpg", alt: "Woman at resort with luggage" },
+  { src: "/images/service-3.jpg", alt: "Doing warmup with coach" },
+  { src: "/images/service-4.jpg", alt: "Guest relaxing in pool repeat" },
   {
-    src: "/images/2c65de8a713b201fcc7f1e0a2a2a84eec20223f7.jpg",
+    src: "/images/exp2.jpg",
     alt: "Resort pool and ocean view",
   },
   {
-    src: "/images/Rectangle 18 (2).png",
-    alt: "Forest lake at sunrise",
+    src: "/images/exp6.jpg",
+    alt: "Flexing",
     withLabel: true,
   },
-  { src: "/images/Rectangle 18 (3).png", alt: "Guest relaxing in pool" },
-  { src: "/images/6483.jpg", alt: "Woman at resort with luggage" },
-  { src: "/images/Rectangle 29.png", alt: "Resort pool repeat B" },
-  { src: "/images/Rectangle 21.png", alt: "Guest relaxing in pool repeat" },
 ];
 
 export function GuestsCarousel({

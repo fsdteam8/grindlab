@@ -7,38 +7,44 @@ type Testimonial = {
   quote: string;
   name: string;
   location: string;
+  img: string;
 };
 
 const testimonials: Testimonial[] = [
   {
     quote:
-      "I've been ordering from TABLEFRESH for over year now, and the quality of their organic produce is consistently excellent. The convenience of having fresh, organic food delivered to my door has made healthy eating so much easier for my family.",
-    name: "John Doe",
+      "I used to compromise on my wellness routine when abroad. Now, I can book trusted professionals worldwide with the same quality I enjoy at home",
+    name: "Ruben",
     location: "Portland",
+    img: "/images/omar.jpg",
   },
   {
     quote:
-      "The freshness and quality exceeded my expectations. Every delivery arrives perfectly packaged and the customer service team is incredibly responsive to any questions or concerns.",
-    name: "Sarah Johnson",
+      "Our executives thrive on performance. This service gives them access to elite wellness solutions across continents, without sacrificing time or quality",
+    name: "Omar",
     location: "Portland, OR",
+    img: "/images/ruben.jpg",
   },
   {
     quote:
-      "What impressed me most is the variety of seasonal produce available. TABLEFRESH has introduced my family to vegetables we'd never tried before, expanding our culinary horizons.",
+      "Our guests expect the very best. Partnering here has elevated our wellness offerings — the seamless access to global practitioners creates an unforgettable luxury exp",
     name: "Michael Chen",
     location: "Seattle, WA",
+    img: "/images/840c507def1c22728c2b274547319f5f7a761ba3.jpg",
   },
   {
     quote:
       "The subscription model works perfectly for our busy lifestyle. We never run out of fresh vegetables, and the automatic deliveries save us so much time on grocery shopping.",
     name: "Emily Rodriguez",
     location: "San Francisco, CA",
+    img: "/images/avatar-placeholder.jpg",
   },
   {
     quote:
-      "As someone who values sustainable farming, I appreciate TABLEFRESH's commitment to organic practices. The quality speaks for itself, and I feel good about supporting ethical agriculture.",
+      "This service has transformed our wellness offerings. Our guests love the convenience and quality of the practitioners they can book through the platform.",
     name: "David Thompson",
     location: "Denver, CO",
+    img: "/images/omar.jpg",
   },
 ];
 
@@ -255,7 +261,7 @@ export default function TestimonialsCarousel() {
                       <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-white font-medium text-lg">
                           <Image
-                            src="/images/avatar-placeholder.jpg"
+                            src={testimonial.img}
                             alt="Avatar"
                             width={48}
                             height={48}
