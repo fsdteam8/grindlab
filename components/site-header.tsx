@@ -21,17 +21,18 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors container  ${
         scrolled
-          ? "bg-black/20 backdrop-blur-xl supports-[backdrop-filter]:bg-black/30 !my-4 duration-300"
+          ? "bg-black backdrop-blur-xl supports-[backdrop-filter]:bg-white/70 !my-4 duration-300 rounded-full"
           : "bg-transparent"
       }`}
     >
-      <div className=" px-4 h-16 flex items-center justify-between">
+      <div className=" px-4 h-18 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/images/grindlab.svg"
+            src="/images/logo.png"
             alt="Grind Lab"
             width={120}
             height={32}
+            className="h-20 w-20"
           />
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm">
@@ -44,16 +45,16 @@ export function SiteHeader() {
           <NavLink href="#" className="nav-link">
             About Us
           </NavLink>
-          <NavLink href="#" className="nav-link">
+          <NavLink href="#service" className="nav-link">
             Services
           </NavLink>
-          <NavLink href="#" className="nav-link">
+          <NavLink href="#experience" className="nav-link">
             Tailor‑Made Travel
           </NavLink>
         </nav>
         <div className="hidden md:block">
           <NavLink href="#contact" onClick={() => setOpen(false)}>
-            <Button className="w-full bg-brand text-black hover:opacity-90 cursor-pointer font-bold ">
+            <Button className="w-full bg-brand text-black hover:opacity-90 cursor-pointer font-bold rounded-full shadow border border-black/10 ">
               Contact
             </Button>
           </NavLink>
@@ -102,7 +103,7 @@ function NavLink(props: React.ComponentProps<typeof Link>) {
   return (
     <Link
       {...rest}
-      className={`text-white/80 hover:text-white transition-colors ${
+      className={`text-black/80 hover:!text-black hover:font-semibold transition-colors ${
         className ?? ""
       }`}
     />
