@@ -16,28 +16,28 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "GRIND LAB",
+  title: "GRIND LAB GLOBAL",
   description:
     "Elite movement, mindset, and performance solutions for the world's top hotels and high‑performing clientele",
   icons: {
-    icon: "/images/grindlab.svg",
+    icon: "/images/exp3.jpg",
   },
-  openGraph: {
-    title: "GRIND LAB",
-    description:
-      "Elite movement, mindset, and performance solutions for the world's top hotels and high‑performing clientele.",
-    url: "https://grindlabglobal.com",
-    siteName: "GRIND LAB",
-    images: [
-      {
-        url: "/images/gindlab.svg",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
+  // openGraph: {
+  //   title: "GRIND LAB",
+  //   description:
+  //     "Elite movement, mindset, and performance solutions for the world's top hotels and high‑performing clientele.",
+  //   url: "https://grindlabglobal.com",
+  //   siteName: "GRIND LAB",
+  //   images: [
+  //     {
+  //       url: "/images/gindlab.svg",
+  //       width: 1200,
+  //       height: 630,
+  //     },
+  //   ],
+  //   locale: "en_US",
+  //   type: "website",
+  // },
 };
 
 export default function RootLayout({

@@ -98,7 +98,7 @@ export default function Page() {
         </section>
 
         {/* For our valued guests (matches screenshot with centered controls) */}
-        <section className="relative py-14 md:py-20 bg-black">
+        <section className="relative py-14 md:py-20 bg-black" id="service">
           <div className="container px-4 md:px-8">
             <SectionHeading
               title="For our valued guests"
@@ -112,7 +112,7 @@ export default function Page() {
         </section>
 
         {/* Tailored Wellness Experiences */}
-        <section className="relative bg-black py-14 md:py-24" id="services">
+        <section className="relative bg-black py-14 md:py-24" id="experience">
           <div className="container px-4 md:px-8">
             <SectionHeading
               title="Tailored Wellness Experiences"
@@ -156,10 +156,11 @@ export default function Page() {
               <div className="space-y-4 w-[408px] col-span-2">
                 <div className="flex items-center gap-2">
                   <Image
-                    src="/images/grindlab.svg"
+                    src="/images/logo.png"
                     alt="Grind Lab"
                     width={120}
                     height={32}
+                    className="invert-100"
                   />
                 </div>
                 <p className="text-white font-medium text-base leading-[150%] tracking-normal">
